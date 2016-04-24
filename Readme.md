@@ -12,7 +12,25 @@ The process is as follows
 
 1. Implement your library code.
 
-1. Add the plugin by Chris Banes and define the required variables in the `gradle.properties`.
+1. Add the plugin by Chris Banes to your library's `build.gradle`
+  ```gradle
+  apply from: 'https://raw.github.com/nisrulz/gradle-mvn-push/master/gradle-mvn-push.gradle'
+  ```
+  
+  and define the required variables in the `gradle.properties`.
+  ```
+  # Properties used by gradle maven-push plugin
+  VERSION_NAME=1.0.0
+  VERSION_CODE=1
+  POM_NAME=<Library_Name>
+  POM_ARTIFACT_ID=<library_name_smallcaps>
+  
+  POM_DESCRIPTION=<library_description>
+  POM_URL=https://github.com/<username>/<repo_name>
+  POM_SCM_URL=https://github.com/<username>/<repo_name>
+  POM_SCM_CONNECTION=scm:git@github.com:<username>/<repo_name>.git
+  POM_SCM_DEV_CONNECTION=scm:git@github.com:<username>/<repo_name>.git
+  ```
 
 1. Run in terminal
   ```bash
