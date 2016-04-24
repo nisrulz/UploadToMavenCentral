@@ -3,19 +3,30 @@
 Base repository to demonstrate the process of uploading an `aar`/`jar` to maven central.
 
 The process is as follows
+
 1. Register for Nexus repository and also open a JIRA ticket at OSS Sonatype and wait for it to be resolved.
+
 1. Create a android project in android studio.
+
 1. Create a new module and choose `Android Library`.
+
 1. Implement your library code.
+
 1. Add the plugin by Chris Banes and define the required variables in the `gradle.properties`.
+
 1. Run in terminal
   ```bash
   ./gradlew build clean uploadArchive
   ```
+
 1. Login into Nexus repository and search for your package name.
+
 1. Close the staged artifact.
+
 1. Release the closed artifact.
+
 1. Wait for some hours before everything gets synced with Maven Central.
+
 1. Go get a coffee, for your done
 
 
