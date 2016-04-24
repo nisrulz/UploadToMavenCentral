@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        // Call to library functions
         ShowToast.getInstance().toast(this, "Hello World Hooman!");
     }
 }
