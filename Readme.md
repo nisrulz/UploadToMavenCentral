@@ -1,4 +1,4 @@
-# Upload to Maven Central
+# Upload to Maven Central [![Twitter](https://img.shields.io/badge/Twitter-@nisrulz-blue.svg?style=flat)](http://twitter.com/nisrulz)
 
 Base repository to demonstrate the process of uploading an `aar`/`jar` to maven central.
 
