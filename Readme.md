@@ -1,23 +1,30 @@
-# Upload to Maven Central
+# Upload to MavenCentral
 
 [![GitHub followers](https://img.shields.io/github/followers/nisrulz.svg?style=social&label=Follow)](https://github.com/nisrulz/easydeviceinfo) [![Twitter Follow](https://img.shields.io/twitter/follow/nisrulz.svg?style=social)](https://twitter.com/nisrulz) 
 
 Base repository to demonstrate the process of uploading an [`aar`](https://sites.google.com/a/android.com/tools/tech-docs/new-build-system/aar-format)/[`jar`](https://en.wikipedia.org/wiki/JAR_(file_format)) to [MavenCentral](https://search.maven.org/).
 
-
-Base repository to demonstrate the process of uploading an `aar`/`jar` to maven central.
-
 The process is as follows
 
-1. Register for Nexus repository and also open a JIRA ticket at OSS Sonatype and wait for it to be resolved.
+1. Create an Android project or open an existing one in [Android Studio](https://en.wikipedia.org/wiki/Android_Studio)
 
-1. Create a android project in android studio.
+1. Init the project with git and also create a repo on Github for the same. Each step here onwards represent a commit and should be pushed to github.
 
-1. Create a new module and choose `Android Library`.
+1. Create and add a new module and choose `Android Library`.
+   > Goto `File>New>New Module..` and select `Android Library`.
 
-1. Implement your library code.
+1. Implement your library code inside the library module you created in the last step.
 
-1. Add the plugin by Chris Banes to your library's `build.gradle`
+1. Next add the library module as a dependency to the app module.
+   > 1. Goto `File>Project Structure..`
+   > 1. Select `app` module in the sidebar
+   > 1. Select the `Dependencies` tab
+   > 1. At the bottom is a `+` icon, click that and select `Module dependency` and select your `library` module.
+   > 1. Press `apply` or `ok`.
+   
+1. Add the plugin by Chris Banes to your library's `build.gradle` 
+  > NOTE:  Below is a fork of the orginal script written by Chris Banes.
+  
   ```gradle
   apply from: 'https://raw.github.com/nisrulz/gradle-mvn-push/master/gradle-mvn-push.gradle'
   ```
@@ -36,21 +43,78 @@ The process is as follows
   POM_SCM_CONNECTION=scm:git@github.com:<username>/<repo_name>.git
   POM_SCM_DEV_CONNECTION=scm:git@github.com:<username>/<repo_name>.git
   ```
-
-1. Run in terminal
+  
+1. Setup [GPG](http://blog.ghostinthemachines.com/2015/03/01/how-to-use-gpg-command-line/) and generate yourself a key.
+  
+  + Now list your gpg keys
+    ```bash
+    $ gpg --list-keys
+    ```
+    >There the first line will be like pub XXXXX/YYYYYYYY <date>. Remember that ‘YYYYYYYY’ part, it’s you key ID.
+  
+  + Next, publish your keys
+    ```bash
+    $ gpg --keyserver hkp://keyserver.ubuntu.com --send-keys YYYYYYYY
+    $ gpg --keyserver hkp://pgp.mit.edu --send-keys YYYYYYYY
+    ```
+  + To ensure your keys were published
+    ```bash
+    $ gpg --keyserver hkp://pgp.mit.edu --search-keys 
+    username@example.com # Use your email
+    ```
+  
+1. Setup Sonatype account
+  + Create a JIRA account on [Sonatype](https://issues.sonatype.org/secure/Signup!default.jspa)
+  + Once you are logged in, [create a new issue](https://issues.sonatype.org/secure/CreateIssue.jspa?issuetype=21&pid=10134)
+  + Fill out the form as below
+    >Group Id : com.github.<github_username>
+    >Project URL : https://github.com/<github_username>/<project_name>
+    >SCM url : https://github.com/<github_username>/<project_name>.git
+    >Username : <sonatype_username>
+    >Already Synced to Central : No
+  + Next hit submit. After you submit, it can take up to 2 business days to process your issue. Then you will receive a confirmation that your configuration has been prepared and you can publish your library.
+    > **IMPORTANT** : Do not deploy until after you have received an e-mail notice indicating that the ticket is Resolved.
+    
+  + Update `gradle.properties` on your local machine  at location `~/.gradle/gradle.properties` and include
+    ```
+     NEXUS_USERNAME=sonatype_username
+     NEXUS_PASSWORD=sonatype_password
+     signing.keyId=gpg_key_id 
+     signing.password=gpg_password
+     signing.secretKeyRingFile=/Users/username/.gnupg/secring.gpg
+     org.gradle.daemon=true
+    ```
+    
+  
+1. Run in terminal to publish your artifacts
   ```bash
   ./gradlew build clean uploadArchive
   ```
 
-1. Login into Nexus repository and search for your package name.
+1. Login into [Nexus Repository Console](https://oss.sonatype.org/#stagingRepositories) and search for your package name.
 
-1. Close the staged artifact.
+1. Close the staged artifact.[wait]
 
-1. Release the closed artifact.
+1. Release the closed artifact (keep drop artifact selected).[wait]
 
-1. Wait for some hours before everything gets synced with Maven Central.
+1. Wait for some hours before everything gets synced with MavenCentral.
 
-1. Go get a coffee, for your done
+1. To use the published library you have do something like below
+
+  ```gradle
+  dependencies {
+      compile 'com.github.nisrulz:awesomelib:1.0'
+  }
+  ```
+
+1. Let the world know of your **AwesomeLib** :smile:
+  > + Add a readme that explains how to integrate and use your Awesome library
+  > + Add a license block as in this repo
+  > + Promote your lib on social media so that others can know about it.
+  > + Always add a working sample app in your project that demonstrates your library in use.
+  > + Add screenshots if possible in your readme.
+
+
 
 
 
