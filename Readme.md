@@ -1,6 +1,8 @@
 # Upload to MavenCentral
 
-[![GitHub followers](https://img.shields.io/github/followers/nisrulz.svg?style=social&label=Follow)](https://github.com/nisrulz/easydeviceinfo) [![Twitter Follow](https://img.shields.io/twitter/follow/nisrulz.svg?style=social)](https://twitter.com/nisrulz) 
+### Show some :heart:
+[![GitHub stars](https://img.shields.io/github/stars/nisrulz/UploadToMavenCentral.svg?style=social&label=Star)](https://github.com/nisrulz/UploadToMavenCentral) [![GitHub forks](https://img.shields.io/github/forks/nisrulz/UploadToMavenCentral.svg?style=social&label=Fork)](https://github.com/nisrulz/UploadToMavenCentral/fork) [![GitHub watchers](https://img.shields.io/github/watchers/nisrulz/UploadToMavenCentral.svg?style=social&label=Watch)](https://github.com/nisrulz/UploadToMavenCentral) [![GitHub followers](https://img.shields.io/github/followers/nisrulz.svg?style=social&label=Follow)](https://github.com/nisrulz/UploadToMavenCentral)  
+[![Twitter Follow](https://img.shields.io/twitter/follow/nisrulz.svg?style=social)](https://twitter.com/nisrulz) 
 
 Base repository to demonstrate the process of uploading an [`aar`](https://sites.google.com/a/android.com/tools/tech-docs/new-build-system/aar-format)/[`jar`](https://en.wikipedia.org/wiki/JAR_(file_format)) to [MavenCentral](https://search.maven.org/).
 
