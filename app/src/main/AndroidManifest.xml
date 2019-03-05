@@ -15,7 +15,8 @@
   ~ limitations under the License.
   -->
 
-<manifest package="sample.github.nisrulz.uploadtomavencentral"
+<manifest xmlns:tools="http://schemas.android.com/tools"
+    package="sample.github.nisrulz.uploadtomavencentral"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
@@ -23,7 +24,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
