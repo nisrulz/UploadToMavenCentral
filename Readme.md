@@ -20,34 +20,35 @@ The process is as follows
 1. Implement your library code inside the library module you created in the last step.
 
 1. Next add the library module as a dependency to the app module.
-   > 1. Goto `File>Project Structure..`
-   > 1. Select `app` module in the sidebar
-   > 1. Select the `Dependencies` tab
-   > 1. At the bottom is a `+` icon, click that and select `Module dependency` and select your `library` module.
-   > 1. Press `apply` or `ok`.
+    + Goto `File>Project Structure..`
+    + Select `app` module in the sidebar
+    + Select the `Dependencies` tab
+    + At the bottom is a `+` icon, click that and select `Module dependency` and select your `library` module.
+    + Press `apply` or `ok`.
    
-1. Add the plugin by Chris Banes to your library's `build.gradle` 
-  > NOTE:  Below is a fork of the orginal script written by Chris Banes.
+1. Add the plugin by Chris Banes to your library's `build.gradle` file at the end
+    > NOTE:  Below is a fork of the original script written by Chris Banes.
   
-  ```gradle
-  apply from: 'https://raw.github.com/nisrulz/gradle-mvn-push/master/gradle-mvn-push.gradle'
-  ```
+    ```gradle
+    apply from: 'https://raw.github.com/nisrulz/gradle-mvn-push/master/gradle-mvn-push.gradle'
+    ```
   
   and define the required variables in the `gradle.properties`.
-  ```
-  # Properties used by gradle maven-push plugin
-  VERSION_NAME=1.0.0
-  VERSION_CODE=1
-  POM_NAME=<Library_Name>
-  POM_ARTIFACT_ID=<library_name_smallcaps>
-  
-  POM_DESCRIPTION=<library_description>
-  POM_URL=https://github.com/<username>/<repo_name>
-  POM_SCM_URL=https://github.com/<username>/<repo_name>
-  POM_SCM_CONNECTION=scm:git@github.com:<username>/<repo_name>.git
-  POM_SCM_DEV_CONNECTION=scm:git@github.com:<username>/<repo_name>.git
-  ```
-  
+    ```
+    # Properties used by gradle maven-push plugin
+    VERSION_NAME=1.0.0
+    VERSION_CODE=1
+    POM_NAME=<library_Name>
+    GROUP=<group_name>
+    POM_ARTIFACT_ID=<library_name_smallcaps>
+    POM_DESCRIPTION=<library_description>
+    
+    POM_URL=https://github.com/<username>/<repo_name>
+    POM_SCM_URL=https://github.com/<username>/<repo_name>
+    POM_SCM_CONNECTION=scm:git@github.com:<username>/<repo_name>.git
+    POM_SCM_DEV_CONNECTION=scm:git@github.com:<username>/<repo_name>.git
+    ```
+
 1. Setup [GPG](http://blog.ghostinthemachines.com/2015/03/01/how-to-use-gpg-command-line/) and generate yourself a key.
   
   + Now list your gpg keys
@@ -79,7 +80,7 @@ The process is as follows
   + Next hit submit. After you submit, it can take up to 2 business days to process your issue. Then you will receive a confirmation that your configuration has been prepared and you can publish your library.
     > **IMPORTANT** : Do not deploy until after you have received an e-mail notice indicating that the ticket is Resolved.
     
-  + Update `gradle.properties` on your local machine  at location `~/.gradle/gradle.properties` and include
+  + Update the global `gradle.properties` on your local machine at location `~/.gradle/gradle.properties` and include
     ```
      NEXUS_USERNAME=sonatype_username
      NEXUS_PASSWORD=sonatype_password
@@ -91,9 +92,9 @@ The process is as follows
     
   
 1. Run in terminal to publish your artifacts
-  ```bash
-  ./gradlew build clean uploadArchive
-  ```
+    ```bash
+    ./gradlew build clean uploadArchive
+    ```
 
 1. Login into [Nexus Repository Console](https://oss.sonatype.org/#stagingRepositories) and search for your package name.
 
@@ -105,23 +106,23 @@ The process is as follows
 
 1. To use the published library you have do something like below
 
-  ```gradle
-  dependencies {
+    ```gradle
+    dependencies {
       compile 'com.github.nisrulz:awesomelib:1.0'
-  }
-  ```
+    }
+    ```
 
 1. Let the world know of your **AwesomeLib** :smile:
-  > + Add a readme that explains how to integrate and use your Awesome library
-  > + Add a license block as in this repo
-  > + Promote your lib on social media so that others can know about it.
-  > + Always add a working sample app in your project that demonstrates your library in use.
-  > + Add screenshots if possible in your readme.
-
+    + Add a readme that explains how to integrate and use your Awesome library
+    + Add a license block as in this repo
+    + Promote your lib on social media so that others can know about it.
+    + Always add a working sample app in your project that demonstrates your library in use.
+    + Add screenshots if possible in your read
+    
+-
 
 > If you found this example helpful or you learned something from the source code and want to thank me, consider buying me a cup of :coffee:
 >  + [PayPal](https://www.paypal.me/nisrulz/5usd)
->  + Bitcoin Address: 13PjuJcfVW2Ad81fawqwLtku4bZLv1AxCL
 
 License
 =======
