@@ -15,15 +15,13 @@
  */
 
 apply plugin: 'com.android.library'
-apply from: 'https://raw.github.com/nisrulz/gradle-mvn-push/master/gradle-mvn-push.gradle'
-
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
     }
@@ -50,3 +48,6 @@ dependencies {
 task jar(type: Jar, dependsOn: 'assembleRelease') {
     from fileTree(dir: 'build/intermediates/classes/release')
 }
+
+// Have this at the end
+apply from: 'https://raw.github.com/nisrulz/gradle-mvn-push/master/gradle-mvn-push.gradle'
