@@ -29,26 +29,26 @@ The process is as follows
 1. Add the plugin by Chris Banes to your library's `build.gradle` file at the end
     > NOTE:  Below is a fork of the original script written by Chris Banes.
   
-    ```gradle
-    apply from: 'https://raw.github.com/nisrulz/gradle-mvn-push/master/gradle-mvn-push.gradle'
-    ```
+  ```gradle
+  apply from: 'https://raw.github.com/nisrulz/gradle-mvn-push/master/gradle-mvn-push.gradle'
+  ```
   
   and define the required variables in the `gradle.properties`.
-    ```
-    # Properties used by gradle maven-push plugin
-    VERSION_NAME=1.0.0
-    VERSION_CODE=1
+  ```
+  # Properties used by gradle maven-push plugin
+  VERSION_NAME=1.0.0
+  VERSION_CODE=1
     POM_NAME=<library_Name>
     GROUP=<group_name>
-    POM_ARTIFACT_ID=<library_name_smallcaps>
+  POM_ARTIFACT_ID=<library_name_smallcaps>
     POM_DESCRIPTION=<library_description>
-    
-    POM_URL=https://github.com/<username>/<repo_name>
-    POM_SCM_URL=https://github.com/<username>/<repo_name>
-    POM_SCM_CONNECTION=scm:git@github.com:<username>/<repo_name>.git
-    POM_SCM_DEV_CONNECTION=scm:git@github.com:<username>/<repo_name>.git
-    ```
-
+  
+  POM_URL=https://github.com/<username>/<repo_name>
+  POM_SCM_URL=https://github.com/<username>/<repo_name>
+  POM_SCM_CONNECTION=scm:git@github.com:<username>/<repo_name>.git
+  POM_SCM_DEV_CONNECTION=scm:git@github.com:<username>/<repo_name>.git
+  ```
+  
 1. Setup [GPG](http://blog.ghostinthemachines.com/2015/03/01/how-to-use-gpg-command-line/) and generate yourself a key.
   
   + Now list your gpg keys
@@ -92,9 +92,9 @@ The process is as follows
     
   
 1. Run in terminal to publish your artifacts
-    ```bash
-    ./gradlew build clean uploadArchive
-    ```
+  ```bash
+  ./gradlew build clean uploadArchive
+  ```
 
 1. Login into [Nexus Repository Console](https://oss.sonatype.org/#stagingRepositories) and search for your package name.
 
@@ -106,11 +106,11 @@ The process is as follows
 
 1. To use the published library you have do something like below
 
-    ```gradle
-    dependencies {
+  ```gradle
+  dependencies {
       compile 'com.github.nisrulz:awesomelib:1.0'
-    }
-    ```
+  }
+  ```
 
 1. Let the world know of your **AwesomeLib** :smile:
     + Add a readme that explains how to integrate and use your Awesome library
@@ -118,11 +118,9 @@ The process is as follows
     + Promote your lib on social media so that others can know about it.
     + Always add a working sample app in your project that demonstrates your library in use.
     + Add screenshots if possible in your read
-    
--
 
-> If you found this example helpful or you learned something from the source code and want to thank me, consider buying me a cup of :coffee:
->  + [PayPal](https://www.paypal.me/nisrulz/5usd)
+
+If you appreciate my work, consider [buying me](https://www.paypal.me/nisrulz/5usd) a cup of :coffee: to keep me recharged :metal: [[PayPal](https://www.paypal.me/nisrulz/5usd)]
 
 License
 =======
