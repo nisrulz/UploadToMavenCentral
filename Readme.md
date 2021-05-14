@@ -27,92 +27,102 @@ The process is as follows
     + Press `apply` or `ok`.
    
 1. Add the plugin by Chris Banes to your library's `build.gradle` file at the end
-    > NOTE:  Below is a fork of the original script written by Chris Banes.
-  
-  ```gradle
-  apply from: 'https://raw.github.com/nisrulz/gradle-mvn-push/master/gradle-mvn-push.gradle'
-  ```
-  
-  and define the required variables in the `gradle.properties`.
-  ```
-  # Properties used by gradle maven-push plugin
-  VERSION_NAME=1.0.0
-  VERSION_CODE=1
-    POM_NAME=<library_Name>
+    
+    > NOTE:  Below is a fork of the [original script written by Chris Banes](https://github.com/chrisbanes/gradle-mvn-push).
+    
+    ```gradle
+    apply from: 'https://raw.github.com/nisrulz/gradle-mvn-push/master/gradle-mvn-push.gradle'
+    ```
+    
+    and define the required variables in the `gradle.properties`.
+    ```
+    # Properties used by gradle maven-push plugin
+
+    # Library info
     GROUP=<group_name>
-  POM_ARTIFACT_ID=<library_name_smallcaps>
+    VERSION_NAME=1.0.0
+    VERSION_CODE=1
+
+    # POM info
+    POM_NAME=<Library_Name>
+    POM_ARTIFACT_ID=<library_name_smallcaps>
     POM_DESCRIPTION=<library_description>
-  
-  POM_URL=https://github.com/<username>/<repo_name>
-  POM_SCM_URL=https://github.com/<username>/<repo_name>
-  POM_SCM_CONNECTION=scm:git@github.com:<username>/<repo_name>.git
-  POM_SCM_DEV_CONNECTION=scm:git@github.com:<username>/<repo_name>.git
-  ```
+    POM_URL=https://github.com/<username>/<repo_name>
+    POM_SCM_URL=https://github.com/<username>/<repo_name>
+    POM_SCM_CONNECTION=scm:git@github.com:<username>/<repo_name>.git
+    POM_SCM_DEV_CONNECTION=scm:git@github.com:<username>/<repo_name>.git
+
+    ```
   
 1. Setup [GPG](http://blog.ghostinthemachines.com/2015/03/01/how-to-use-gpg-command-line/) and generate yourself a key.
   
-  + Now list your gpg keys
-    ```bash
-    $ gpg --list-keys
-    ```
-    >There the first line will be like pub XXXXX/YYYYYYYY <date>. Remember that ‘YYYYYYYY’ part, it’s you key ID.
-  
-  + Next, publish your keys
-    ```bash
-    $ gpg --keyserver hkp://keyserver.ubuntu.com --send-keys YYYYYYYY
-    $ gpg --keyserver hkp://pgp.mit.edu --send-keys YYYYYYYY
-    ```
-  + To ensure your keys were published
-    ```bash
-    $ gpg --keyserver hkp://pgp.mit.edu --search-keys 
-    username@example.com # Use your email
-    ```
-  
+     + Now list your gpg keys
+       ```bash
+       $ gpg --list-keys
+       ```
+       >There the first line will be like pub XXXXX/YYYYYYYY <date>. Remember that ‘YYYYYYYY’ part, it’s you key ID.
+     
+     + Next, publish your keys
+       ```bash
+       $ gpg --keyserver hkp://keyserver.ubuntu.com --send-keys YYYYYYYY
+       $ gpg --keyserver hkp://pgp.mit.edu --send-keys YYYYYYYY
+       ```
+     + To ensure your keys were published
+       ```bash
+       $ gpg --keyserver hkp://pgp.mit.edu --search-keys 
+       username@example.com # Use your email
+       ```
+     
 1. Setup Sonatype account
-  + Create a JIRA account on [Sonatype](https://issues.sonatype.org/secure/Signup!default.jspa)
-  + Once you are logged in, [create a new issue](https://issues.sonatype.org/secure/CreateIssue.jspa?issuetype=21&pid=10134)
-  + Fill out the form as below
-    >Group Id : com.github.<github_username>
-    >Project URL : https://github.com/<github_username>/<project_name>
-    >SCM url : https://github.com/<github_username>/<project_name>.git
-    >Username : <sonatype_username>
-    >Already Synced to Central : No
-  + Next hit submit. After you submit, it can take up to 2 business days to process your issue. Then you will receive a confirmation that your configuration has been prepared and you can publish your library.
-    > **IMPORTANT** : Do not deploy until after you have received an e-mail notice indicating that the ticket is Resolved.
-    
-  + Update the global `gradle.properties` on your local machine at location `~/.gradle/gradle.properties` and include
-    ```
-     NEXUS_USERNAME=sonatype_username
-     NEXUS_PASSWORD=sonatype_password
-     signing.keyId=gpg_key_id 
-     signing.password=gpg_password
-     signing.secretKeyRingFile=/Users/username/.gnupg/secring.gpg
-     org.gradle.daemon=true
-    ```
-    
+     + Create a JIRA account on [Sonatype](https://issues.sonatype.org/secure/Signup!default.jspa)
+     + Once you are logged in, [create a new issue](https://issues.sonatype.org/secure/CreateIssue.jspa?issuetype=21&pid=10134)
+     + Fill out the form as below
   
-1. Run in terminal to publish your artifacts
-  ```bash
-  ./gradlew build clean uploadArchive
-  ```
+       ```
+       Group Id : com.github.<github_username>
+       Project URL : https://github.com/<github_username>/<project_name>
+       SCM url : https://github.com/<github_username>/<project_name>.git
+       Username : <sonatype_username>
+       Already Synced to Central : No
+       ```
 
-1. Login into [Nexus Repository Console](https://oss.sonatype.org/#stagingRepositories) and search for your package name.
+     + Next hit submit. After you submit, it can take up to 2 business days to process your issue. Then you will receive a confirmation that your configuration has been prepared and you can publish your library.
+       > **IMPORTANT** : Do not deploy until after you have received an e-mail notice indicating that the ticket is Resolved.
+       
+     + Update the global `gradle.properties` on your local machine at location `~/.gradle/gradle.properties` and include
+  
+        ```
+          NEXUS_USERNAME=sonatype_username
+          NEXUS_PASSWORD=sonatype_password
+          signing.keyId=gpg_key_id 
+          signing.password=gpg_password
+          signing.secretKeyRingFile=/Users/username/.gnupg/secring.gpg
+          org.gradle.daemon=true
+        ```
 
-1. Close the staged artifact.[wait]
+2. Run in terminal to publish your artifacts
+   
+    ```bash
+    ./gradlew build clean uploadArchive
+    ```
 
-1. Release the closed artifact (keep drop artifact selected).[wait]
+3. Login into [Nexus Repository Console](https://oss.sonatype.org/#stagingRepositories) and search for your package name.
 
-1. Wait for some hours before everything gets synced with MavenCentral.
+4. Close the staged artifact.[wait]
 
-1. To use the published library you have do something like below
+5. Release the closed artifact (keep drop artifact selected).[wait]
 
-  ```gradle
-  dependencies {
-      compile 'com.github.nisrulz:awesomelib:1.0'
-  }
-  ```
+6. Wait for some hours before everything gets synced with MavenCentral.
 
-1. Let the world know of your **AwesomeLib** :smile:
+7. To use the published library you have do something like below
+
+    ```gradle
+    dependencies {
+        implementation 'com.github.nisrulz:awesomelib:1.0'
+    }
+    ```
+
+8. Let the world know of your **AwesomeLib** :smile:
     + Add a readme that explains how to integrate and use your Awesome library
     + Add a license block as in this repo
     + Promote your lib on social media so that others can know about it.
