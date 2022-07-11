@@ -13,22 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package sample.github.nisrulz.demolibrary
 
-package sample.github.nisrulz.uploadtomavencentral;
+import android.content.Context
+import android.widget.Toast
 
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-
-import sample.github.nisrulz.demolibrary.ShowToast;
-
-public class MainActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        // Call to library functions
-        ShowToast.getInstance().toast(this, "Hello World Hooman!");
+object ShowToast {
+    fun toast(context: Context?, data: String?) {
+        Toast.makeText(context, data, Toast.LENGTH_SHORT).show()
     }
 }

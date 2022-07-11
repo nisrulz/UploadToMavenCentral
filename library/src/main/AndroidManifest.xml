@@ -14,14 +14,8 @@
   ~ limitations under the License.
   -->
 
-<manifest package="sample.github.nisrulz.demolibrary"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest package="sample.github.nisrulz.demolibrary">
 
-    <application android:allowBackup="true"
-                 android:label="@string/app_name"
-                 android:supportsRtl="true"
-    >
-
-    </application>
+    <application />
 
 </manifest>
