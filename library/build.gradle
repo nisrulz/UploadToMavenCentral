@@ -14,14 +14,20 @@
  * limitations under the License.
  */
 
-apply plugin: 'com.android.library'
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+// Apply Publishing Config
+apply from: "$rootProject.projectDir/gradle-mvn-push.gradle"
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 32
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 30
+        targetSdkVersion 32
         versionCode 1
         versionName "1.0"
     }
@@ -35,7 +41,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
 
     testImplementation 'junit:junit:4.13.2'
 }
@@ -44,10 +50,6 @@ dependencies {
 // Task : Generate a JAR
 // Usage : In the terminal, run './gradlew jar'
 // Output : Get the jar at 'build/libs'
-
 task jar(type: Jar, dependsOn: 'assembleRelease') {
     from fileTree(dir: 'build/intermediates/classes/release')
 }
-
-// Have this at the end
-apply from: 'https://raw.github.com/nisrulz/gradle-mvn-push/master/gradle-mvn-push.gradle'
